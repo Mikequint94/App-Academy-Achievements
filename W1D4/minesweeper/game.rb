@@ -26,11 +26,12 @@ class Game
     pos = parse_pos(gets.chomp)
 
     if @board[pos].bomb
-      puts "You suck"
+      puts "You Lose :((("
       @board.render_loss
       exit
     else
       @board[pos].reveal
+      @board.reveal_neighbors(pos) if @board[pos].bomb_idx == 0
     end
   end
 
