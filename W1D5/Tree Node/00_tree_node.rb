@@ -12,7 +12,7 @@ class PolyTreeNode
   end
 
   def children
-    @children
+    @children.dup
   end
 
   def value
@@ -36,7 +36,7 @@ class PolyTreeNode
 
   def dfs(target_value)
     return self if self.value == target_value
-    self.children.each do |child|
+    children.each do |child|
       result = child.dfs(target_value)
       return result unless result == nil
     end
@@ -49,7 +49,7 @@ class PolyTreeNode
       front = queue.shift
       return front if front.value == target_value
       #debugger
-      queue.concat(front.children) 
+      queue.concat(front.children)
     end
     nil
   end
